@@ -1,5 +1,10 @@
 # FeverGuard Pro
 
+## IMPORTANT NOTE
+
+If you got the card before 2023-10-15, your version tends to under detect fever between 37-38C / 98.5-100F. Commercial thermometers tend to
+over detect this kind of fever, so I updated the logic in the card.
+
 ## Operation
 
 - Press and hold the button - row of LEDs will blink back and forth.

@@ -276,7 +276,7 @@ void broken_sensor()
 
 int temp_to_led(int temp)
 {
-  if (temp > 320 && temp < 350)
+  if (temp > 320 && temp < 340)
     // standard forehead temperature, assume 36.6
     return 3;
 
@@ -287,7 +287,7 @@ int temp_to_led(int temp)
   if (temp < 320)
     return 2;
 
-  int led = (temp - 350) / 5 + 4;
+  int led = (temp - 340) / 5 + 4;
   if (led > 13)
     led = 13;
   return led;

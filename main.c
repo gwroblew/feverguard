@@ -250,14 +250,12 @@ void pulse(int led, int delay)
 
 void turn_off()
 {
-  int i = 0;
-  while (1)
-  {
-    sleep_ms(900);
-    set_led(i++);
-    sleep_ms(100);
-    set_led(15);
-  }
+  set_led(0);
+  gpio_set_pin_level(16, false);
+  sleep_ms(2000);
+  set_led(15);
+  gpio_set_pin_level(16, false);
+  sleep_ms(365 * 24 * 3600 * 1000);
 }
 
 void dead_battery()
@@ -276,7 +274,7 @@ void broken_sensor()
 
 int temp_to_led(int temp)
 {
-  if (temp > 320 && temp < 340)
+  if (temp > 320 && temp < 343)
     // standard forehead temperature, assume 36.6
     return 3;
 
@@ -287,7 +285,7 @@ int temp_to_led(int temp)
   if (temp < 320)
     return 2;
 
-  int led = (temp - 340) / 5 + 4;
+  int led = (temp - 343) / 5 + 4;
   if (led > 13)
     led = 13;
   return led;
@@ -439,7 +437,7 @@ int main(void)
 
   if (temp < 290)
   {
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < 6; i++)
     {
       blink(0, 250);
       blink(1, 250);
@@ -448,7 +446,7 @@ int main(void)
   }
 
   int led = temp_to_led(temp);
-  for (int i = 0; i < 20; i++)
+  for (int i = 0; i < 12; i++)
     pulse(led, 5);
   turn_off();
 }
